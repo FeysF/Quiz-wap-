@@ -9,6 +9,9 @@
         button { margin: 10px 0; padding: 10px 20px; font-size: 16px; cursor: pointer; }
         #feedback { margin-top: 15px; font-weight: bold; }
     </style>
+
+    <!-- Confetti script -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
@@ -42,8 +45,17 @@ function startQuiz() {
 
 function checkAnswer(status) {
     const feedback = document.getElementById("feedback");
+
     if (status === "juist") {
         feedback.innerHTML = "<span style='color: green;'>Juist! De dokter heeft de agent aan de lijn.</span>";
+
+        // 🎉 Confetti
+        confetti({
+            particleCount: 200,
+            spread: 80,
+            origin: { y: 0.6 }
+        });
+
     } else {
         feedback.innerHTML = "<span style='color: red;'>Helaas, dat is niet juist.</span>";
     }
